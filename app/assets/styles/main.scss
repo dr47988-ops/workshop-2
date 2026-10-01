@@ -1,0 +1,6 @@
+:root {
+    --v-primary: #38c1d9;
+    $text-color: #333;
+    color: $text-color;
+    color: var(--v-primary);
+}
