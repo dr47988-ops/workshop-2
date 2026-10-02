@@ -1,41 +1,60 @@
 <template>
   <section class="page">
     <h1>SSR vs Cliente</h1>
-    <p>Misma API (JSONPlaceholder), dos formas de pedir los datos.</p>
+
+    <p>
+      La misma PokéAPI y los mismos 20 Pokémon, cargados de dos formas diferentes.
+    </p>
 
     <div class="grid">
       <article class="card card--ssr">
+        <span class="badge badge--ssr">SSR</span>
+
         <h2>Con SSR</h2>
+
         <p><code>await useFetch(...)</code></p>
+
         <ul>
-          <li>El servidor pide los datos</li>
-          <li>El HTML ya trae los posts</li>
-          <li>Mejor para SEO y primera carga</li>
-          <li>Log en la terminal de Nuxt</li>
+          <li>Nuxt obtiene los Pokémon utilizando <code>useFetch</code>.</li>
+          <li>El HTML inicial ya contiene datos de los Pokémon.</li>
+          <li>Los datos están disponibles desde la primera carga.</li>
+          <li>Se puede comprobar con “Ver código fuente”.</li>
         </ul>
-        <NuxtLink to="/" class="button">Ver versión SSR</NuxtLink>
+
+        <NuxtLink to="/" class="button">
+          Ver versión SSR
+        </NuxtLink>
       </article>
 
       <article class="card card--client">
-        <h2>Sin SSR (cliente)</h2>
-        <p><code>onMounted</code> + <code>fetch</code></p>
+        <span class="badge badge--client">Cliente</span>
+
+        <h2>Sin SSR</h2>
+
+        <p><code>onMounted + fetch</code></p>
+
         <ul>
-          <li>El navegador pide los datos</li>
-          <li>Primero loading, después lista</li>
-          <li>HTML inicial sin posts</li>
-          <li>Log en la consola del browser</li>
+          <li>La página se monta primero en el navegador.</li>
+          <li>Después se realiza la petición a PokéAPI.</li>
+          <li>Mientras llegan los datos se muestra el estado de carga.</li>
+          <li>Los Pokémon se agregan después desde el cliente.</li>
         </ul>
-        <NuxtLink to="/client" class="button">Ver versión cliente</NuxtLink>
+
+        <NuxtLink to="/client" class="button">
+          Ver versión cliente
+        </NuxtLink>
       </article>
     </div>
 
     <section class="demo">
-      <h2>Demo en clase</h2>
+      <h2>¿Cómo comprobar la diferencia?</h2>
+
       <ol>
-        <li>Abrí cada ruta</li>
-        <li>Clic derecho → Ver código fuente de la página</li>
-        <li>Buscá un título como <code>sunt aut</code></li>
-        <li>En SSR aparece. En Cliente no.</li>
+        <li>Abre la versión SSR.</li>
+        <li>Usa “Ver código fuente de la página”.</li>
+        <li>Busca el nombre <code>bulbasaur</code>.</li>
+        <li>En la versión SSR los datos ya vienen en el HTML inicial.</li>
+        <li>Compara el resultado con la versión Cliente.</li>
       </ol>
     </section>
   </section>
@@ -49,7 +68,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
 }
 
@@ -70,11 +89,33 @@
   border-top: 4px solid #ea580c;
 }
 
+.card h2 {
+  margin: 0;
+}
+
 .card ul {
   margin: 0;
   padding-left: 1.2rem;
   display: grid;
-  gap: 0.35rem;
+  gap: 0.4rem;
+}
+
+.badge {
+  width: fit-content;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge--ssr {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge--client {
+  background: #ffedd5;
+  color: #9a3412;
 }
 
 .button {
@@ -94,10 +135,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
+.demo h2 {
+  margin-top: 0;
+}
+
 .demo ol {
   margin: 0.75rem 0 0;
   padding-left: 1.2rem;
   display: grid;
   gap: 0.4rem;
+}
+
+@media (max-width: 600px) {
+  .page {
+    gap: 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
