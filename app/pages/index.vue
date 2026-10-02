@@ -718,6 +718,8 @@ function numeroPokemon(id) {
     font-size: 0.9rem;
   }
 
+  /* BUSCADOR */
+
   .buscador {
     padding: 0.8rem;
   }
@@ -735,6 +737,8 @@ function numeroPokemon(id) {
     width: 100%;
   }
 
+  /* GRID DE POKÉMON */
+
   .lista {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
@@ -742,14 +746,20 @@ function numeroPokemon(id) {
     gap: 0.7rem;
   }
 
+  /* TARJETA */
+
   .lista__item {
-    min-height: 190px;
+    min-height: 225px;
     border-radius: 14px;
   }
 
   .lista__link {
+    height: 100%;
     padding: 0.8rem;
+    box-sizing: border-box;
   }
+
+  /* NOMBRE Y NÚMERO */
 
   .lista__nombre {
     font-size: 0.9rem;
@@ -759,8 +769,10 @@ function numeroPokemon(id) {
     font-size: 0.65rem;
   }
 
+  /* IMAGEN */
+
   .pokemon__imagen {
-    min-height: 115px;
+    min-height: 125px;
   }
 
   .pokemon__imagen img {
@@ -773,9 +785,13 @@ function numeroPokemon(id) {
     height: 90px;
   }
 
+  /* VER DETALLES */
+
   .pokemon__footer {
     font-size: 0.7rem;
+    margin-top: 0.4rem;
+    flex-shrink: 0;
   }
-
 }
 </style>
+
